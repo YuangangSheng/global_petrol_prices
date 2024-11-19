@@ -1,7 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
+import 'features/gas_price/model/gas_price_service.dart';
+import 'features/gas_price/view_model/gas_price_view_model.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (_) => GasPriceViewModel(GasPriceService())),
+      ],
+      child: const MyApp(),
+    ),
+
+  );
 }
 
 class MyApp extends StatelessWidget {
